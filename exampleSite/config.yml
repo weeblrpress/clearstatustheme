@@ -20,8 +20,8 @@ contentDir: "content/en"
 baseUrl: "http://localhost:1313/"
 
 # Theme to use
-theme: clearstatus
-assetsDir: themes/clearstatus/assets
+theme: clearstatustheme
+assetsDir: themes/clearstatustheme/assets
 
 ############################################################
 ## Status default config. Valid for ALL languages.
@@ -63,7 +63,7 @@ params:
   enablePostCSSProcessing: false
   fullCSSSourceFile: "css/src/styles.css"
   fullCSSDistFile: "css/dist/styles.css"
-  postCSSConfigFolder: "themes/clearstatus"
+  postCSSConfigFolder: "themes/clearstatustheme"
 
   # Colors
   bodyBackground: "bg-grey-lighter"
