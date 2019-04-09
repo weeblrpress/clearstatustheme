@@ -1,0 +1,187 @@
+{{ partial "meta" . }}
+
+{{ $incidents := where .Site.RegularPages "Params.section" "issue" }}
+{{ $pastIncidents := where $incidents "Params.status" "=" "resolved" }}
+{{ $active := where $incidents "Params.status" "=" "in_progress" }}
+{{ $scheduled := where $incidents "Params.status" "=" "scheduled" }}
+
+{{ $isMaintenance := where $active "Params.current_severity" "=" "maintenance" }}
+{{ $isMonitoring := where $active "Params.current_severity" "=" "monitoring" }}
+{{ $isDisrupted := where $active "Params.current_severity" "=" "disrupted" }}
+{{ $isDown := where $active "Params.current_severity" "=" "down" }}
+
+{{ $severityBgColor := .Site.Params.DefaultSeverityBackground }}
+{{ $severityColor := .Site.Params.DefaultSeverityColor }}
+{{ $globalMessage := T "isOk" }}
+{{ if $isDown }}
+    {{ $severityBgColor = .Site.Params.DownSeverityBackground }}
+    {{ $severityColor = .Site.Params.DownSeverityColor }}
+    {{ $globalMessage = T "isDown" }}
+{{ else if $isDisrupted }}
+    {{ $severityBgColor = .Site.Params.DisruptedSeverityBackground }}
+    {{ $severityColor = .Site.Params.DisruptedSeverityColor }}
+    {{ $globalMessage = T "isDisrupted" }}
+{{ else if $isMonitoring }}
+  {{ $severityBgColor = .Site.Params.MonitoringSeverityBackground }}
+  {{ $severityColor = .Site.Params.MonitoringSeverityColor }}
+  {{ $globalMessage = T "isMonitoring" }}
+{{ else if $isMaintenance }}
+  {{ $severityBgColor = .Site.Params.MaintenanceSeverityBackground }}
+  {{ $severityColor = .Site.Params.MaintenanceSeverityColor }}
+  {{ $globalMessage = T "isMaintenance" }}
+{{ else }}
+  {{ $severityBgColor = .Site.Params.OkSeverityBackground }}
+  {{ $severityColor = .Site.Params.OkSeverityColor }}
+  {{ $globalMessage = T "isOk" }}
+{{ end }}
+
+  <body class="{{ .Site.Params.BodyBackground }}">
+    {{ partial "header" . }}
+
+    <div class="container w-full max-w-md mx-auto p-4">
+
+        <div class="max-w-md w-full border {{ .Site.Params.BordersColor }} rounded flex flex-col justify-between leading-normal mt-4 mb-0">
+
+            <div class="text-sm {{ $severityColor }} {{ $severityBgColor }} rounded flex items-center justify-between px-4 py-2">
+                <span class="text-xl font-semibold">{{ $globalMessage }}</span>
+                <span class="text-xl cursor-pointer mr-4" onclick="location.reload()">⟳</span>
+            </div>
+        </div>
+
+        <div class="w-full mt-0 mb-4 text-right {{ .Site.Params.RefreshColor }}">
+            <small><em>{{ T "autoRefreshNotice" }}</em></small>
+        </div>
+
+      {{ if $active }}
+        {{ range $active }}
+          {{ .Render "small" }}
+        {{ else }}{{ end }}
+      {{ end }}
+
+        <div class="w-full shadow-md rounded border-l border-r {{ $.Site.Params.ComponentsBackground }} {{ .Site.Params.BordersColor }}">
+        {{ $systems := .Site.Params.systems }}
+        {{ $systemsCount := 0 }}
+        {{ range $index, $item := $systems }}
+            {{ $systemsCount = $index }}
+        {{ end }}
+
+        {{ $borderType := "border-b"}}
+        {{ range $index, $el := $systems }}
+          {{ $activeComponentIssues := where $active "Params.affected" "intersect" (slice .name) }}
+
+          {{ $thisIsMaintenance := where $activeComponentIssues "Params.current_severity" "=" "maintenance" }}
+          {{ $thisIsMonitoring := where $activeComponentIssues "Params.current_severity" "=" "monitoring" }}
+          {{ $thisIsDisrupted := where $activeComponentIssues "Params.current_severity" "=" "disrupted" }}
+          {{ $thisIsDown := where $activeComponentIssues "Params.current_severity" "=" "down" }}
+          {{ $thisIsOk := where $activeComponentIssues "Params.current_severity" "=" "ok" }}
+
+          {{ $currentSeverity := "ok"}}
+          {{ $currentSeverityColor := "text-green-dark"}}
+          {{ if $thisIsDown }}
+            {{ $currentSeverity = "down"}}
+            {{ $currentSeverityColor = "text-red-dark"}}
+          {{ else if $thisIsDisrupted}}
+            {{ $currentSeverity = "disrupted"}}
+            {{ $currentSeverityColor = "text-orange-dark"}}
+          {{ else if $thisIsMonitoring}}
+            {{ $currentSeverity = "monitoring"}}
+            {{ $currentSeverityColor = "text-orange"}}
+          {{ else if $thisIsMaintenance}}
+            {{ $currentSeverity = "maintenance"}}
+            {{ $currentSeverityColor = "text-grey-light"}}
+          {{ end}}
+
+          {{ if eq $systemsCount $index}}
+            {{ $borderType = ""}}
+          {{ end }}
+            <div class="w-full flex items-center justify-between bg-transparent {{ $borderType }} {{ $.Site.Params.ComponentsBorders }} p-4 pr-8">
+                <div>
+                    {{ if ne .link ""}}
+                      <a class="{{ $.Site.Params.ComponentsColor }} no-underline" href="{{ .link }}">
+                        <p class="text-lg font-semibold pb-1">{{ .name }}</p>
+                        <p class="text-sm text-grey-darkest mt-1">{{ .description }}</p>
+                      </a>
+                    {{ else }}
+                      <p class="text-lg font-semibold pb-1">{{ .name }}</p>
+                      <p class="text-sm text-grey-darkest mt-1">{{ .description }}</p>
+                    {{ end }}
+                </div>
+
+                <span class="{{ $currentSeverityColor }} flex-none mr-2">
+                    {{ T $currentSeverity }}
+                </span>
+          </div>
+        {{ end }}
+      </div>
+
+      {{ range $scheduled }}
+      {{ .Render "scheduled" }}
+      {{ end }}
+
+      {{ partial "custom/homepage-summary" . }}
+  </div>
+
+  <div class="container max-w-md mx-auto my-8 text-center border-b {{ .Site.Params.VisibleBordersColor }} {{ .Site.Params.BodyColor }} pb-2">
+    <h2 >{{ T "incidentHistory" }}</h2>
+  </div>
+
+
+  <div class="container max-w-md mx-auto p-4" id="incidents">
+    {{ if not $pastIncidents }}
+      <div class="w-full max-w-md mb-6 align-bottom">
+        <h3>{{ T "noEventsTitle" }}</h3>
+        <p class="my-4">{{ T "noEventsDesc" }}</p>
+      </div>
+    {{ else }}
+      {{ $paginator := .Paginate $pastIncidents .Site.Params.IncidentPostsPerPage }}
+      {{ range $paginator.Pages }}
+        {{ if eq .Params.status "scheduled" }}
+          {{ .Render "scheduled" }}
+        {{ else }}
+          {{ .Render "past" }}
+        {{ end }}
+      {{ end }}
+
+      <!-- If there are more than 2 pages, show pagination -->
+      {{ if gt $paginator.TotalPages 1 }}
+
+        <div class="w-full max-w-md flex justify-between mb-6">
+              {{ if $paginator.HasPrev }}
+                <a class="{{ $.Site.Params.PaginationLinksColor }}" href="{{ $paginator.Prev.URL }}#incidents">
+                  ⭠ &nbsp;
+                  {{ T "prev" }}
+                </a>
+              {{ else }}
+                <span class="{{ $.Site.Params.DisabledPaginationLinksColor }}">
+                  ⭠ &nbsp;
+                  {{ T "prev" }}
+                </span>
+              {{ end }}
+              <span class="px-4 {{ $.Site.Params.PaginationLinksColor }}">
+              {{ $paginator.PageNumber }}
+              /
+              {{ $paginator.TotalPages }}
+              </span>
+
+              {{ if $paginator.HasNext }}
+                <a class="{{ $.Site.Params.PaginationLinksColor }}" href="{{ $paginator.Next.URL }}#incidents">
+                  {{ T "next" }} &nbsp;
+                  ⭢
+                </a>
+              {{ else }}
+                <span class="{{ $.Site.Params.DisabledPaginationLinksColor }}">
+                  {{ T "next" }} &nbsp;
+                  ⭢
+                </span>
+              {{ end }}
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+
+
+
+  {{ partial "js" . }}
+  {{ partial "footer" . }}
+  </body>
+</html>
