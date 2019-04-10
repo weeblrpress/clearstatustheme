@@ -11,6 +11,8 @@
 
 - id: autoRefreshNotice
   translation: Page refreshed every 2 min
+- id: rss
+  translation: Subscribe via RSS
 
 # Summary status message
 - id: scheduled

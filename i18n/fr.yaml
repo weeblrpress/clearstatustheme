@@ -11,6 +11,8 @@
 
 - id: autoRefreshNotice
   translation: Mise à jour auto toutes les 2 mn
+- id: rss
+  translation: Abonnement RSS
 
 # Summary status message
 - id: scheduled
