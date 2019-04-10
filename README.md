@@ -1,2 +1,2 @@
-<p align="center"><img style="max-width: 300px" src="https://raw.githubusercontent.com/weeblrpress/clearstatus/master/images/highlight.svg?sanitize=true" alt="ClearStatus illustration"></p>
+<p align="center"><img style="max-width: 300px" src="https://cdn.weeblrpress.net/clearstatus/assets/images/clearstatus.svg" alt="ClearStatus illustration"></p>
 
