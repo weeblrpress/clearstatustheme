@@ -1,19 +1,11 @@
 <script type="text/javascript">
-
-  function hasClass(element, className) {
-    return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
-  }
-
-  if (hasClass(document.querySelector('body'), 'clearstatus-home')) {
     var lastUpdate = new Date();
-  }
 
-  window.setInterval(function() {
-    if (hasClass(document.querySelector('body'), 'clearstatus-home')) {
-      if (lastUpdate > 120000) {
-        location.reload;
-      }
-    }
-  }, 5000)
+    window.setInterval(function () {
+        var now = new Date();
+        if (now - lastUpdate > 120000) {
+            location.reload;
+        }
+    }, 5000)
 </script>
 
