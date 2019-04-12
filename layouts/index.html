@@ -179,10 +179,8 @@
     {{ end }}
   </div>
 
-
-
-  {{ partial "js" . }}
   {{ partial "footer" . }}
+  {{ partial "js" . }}
   {{ if .Site.Params.EnableNetlifyCMSSupport }}
     <script>
         if (window.netlifyIdentity) {
