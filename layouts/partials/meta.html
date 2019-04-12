@@ -32,7 +32,9 @@
           {{ end }}
       </style>
 
+    {{ if .Site.Params.enableNetlifyCMSSupport }}
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    {{ end }}
 
     {{ partial "custom/meta" . }}
   </head>
