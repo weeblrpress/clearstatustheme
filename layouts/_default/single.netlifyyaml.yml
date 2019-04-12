@@ -57,6 +57,7 @@ collections:
         name: "affected"
         hint: "Which of your systems are affected by the event. Use exact same name as in your config file."
         widget: "select"
+        multiple: true
         options:
 {{ range .Site.Params.Systems }}          - { label: "{{ .name }}", value: "{{ .name }}" }
 {{ end }}
