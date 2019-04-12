@@ -66,3 +66,55 @@ collections:
         hint: "Description of the event as it happens and what you do about it. You can come back several times and update that description."
         widget: "markdown"
         default: ""
+
+
+  - name: "settings"
+    label: "Settings"
+    description: "General configuration for your status page. Saving these settings will overwrite those in your git repository."
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "Status page configuration"
+        file: "config.yml"
+          - label: 'Site title'
+            hint: 'Complete page title'
+            name: 'title'
+            widget: 'string'
+          - label: 'Language code'
+            hint: 'Language code for the status page'
+            name: 'languageCode'
+            widget: 'string'
+            default: "en"
+
+
+          # Hidden settings, not to be modified or not in the UI
+          - label: 'Build future events'
+            name: 'buildFuture'
+            widget: 'boolean'
+            default: true
+          - label: 'theme'
+            name: 'theme'
+            widget: 'hidden'
+            default: 'clearstatus'
+          - label: 'assetsDir'
+            name: 'assetsDir'
+            widget: 'hidden'
+            default: 'themes/clearstatustheme/assets'
+          - label: 'contentDir'
+            name: 'contentDir'
+            widget: 'hidden'
+            default: 'content/default'
+
+
+
+          - label: 'preserveTaxonomyNames'
+            name: 'preserveTaxonomyNames'
+            widget: 'hidden'
+            default: 'true'
+          - label: "taxonomies"
+            name: taxonomies
+            widget: "hidden"
+            fields:
+          - {label: "affected", name: "affected", widget: "hidden", default: "affected"}
