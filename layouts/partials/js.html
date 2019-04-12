@@ -4,7 +4,10 @@
     window.setInterval(function () {
         var now = new Date();
         if (now - lastUpdate > 120000) {
-            location.reload;
+            console.log('Reloading page')
+            location.reload();
+        } else {
+            console.log('Not ready to reload')
         }
     }, 5000)
 </script>
