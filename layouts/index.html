@@ -133,7 +133,7 @@
         <p class="my-4">{{ T "noEventsDesc" }}</p>
       </div>
     {{ else }}
-      {{ $paginator := .Paginate $pastIncidents .Site.Params.IncidentPostsPerPage }}
+      {{ $paginator := .Paginate $pastIncidents .Site.Params.eventsPerPage }}
       {{ range $paginator.Pages }}
         {{ if eq .Params.status "scheduled" }}
           {{ .Render "scheduled" }}

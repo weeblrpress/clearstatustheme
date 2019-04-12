@@ -79,42 +79,73 @@ collections:
         label: "Status page configuration"
         file: "config.yml"
           - label: 'Site title'
-            hint: 'Complete page title'
             name: 'title'
+            hint: 'Complete page title'
             widget: 'string'
           - label: 'Language code'
-            hint: 'Language code for the status page'
             name: 'languageCode'
+            hint: 'Language code for the status page'
             widget: 'string'
             default: "en"
 
-
-          # Hidden settings, not to be modified or not in the UI
-          - label: 'Build future events'
-            name: 'buildFuture'
-            widget: 'boolean'
-            default: true
-          - label: 'theme'
-            name: 'theme'
-            widget: 'hidden'
-            default: 'clearstatus'
-          - label: 'assetsDir'
-            name: 'assetsDir'
-            widget: 'hidden'
-            default: 'themes/clearstatustheme/assets'
-          - label: 'contentDir'
-            name: 'contentDir'
-            widget: 'hidden'
-            default: 'content/default'
-
-
-
-          - label: 'preserveTaxonomyNames'
-            name: 'preserveTaxonomyNames'
-            widget: 'hidden'
-            default: 'true'
-          - label: "taxonomies"
-            name: taxonomies
-            widget: "hidden"
+          ## User settings
+          - label: "Params"
+            name: "params"
+            widget: "object"
             fields:
-          - {label: "affected", name: "affected", widget: "hidden", default: "affected"}
+              - label: "Systems"
+                name: "systems"
+                allow_add: true
+                widget: "list"
+                fields:
+                  - {label: "Name", name: "name", widget: string}
+                  - {label: "Description", name: "description", widget: string, required: false}
+                  - {label: "Link", name: "link", widget: string, required: false}
+              - label: 'Date format'
+                name: 'dateFormat'
+                hint: 'Format to use for full date display'
+                widget: 'string'
+                default: "January 2, 2006 at 3:04 PM"
+              - label: 'Short Date format'
+                name: 'shortDateFormat'
+                hint: 'Format to use for shorter date display'
+                widget: 'string'
+                default: "15:04 — Jan 2"
+              - label: 'Timezone string'
+                name: 'timezoneString'
+                hint: 'This will be displayed after each event time. Set it for instance to " UTC" to indicate UTC times or a specific time zone, ie  America/New_York. You can also instead used a translated string per language'
+                widget: 'string'
+                default: "15:04 — Jan 2"
+              - label: 'Logo path'
+                name: 'logo'
+                hint: 'Path to your logo image, relative to the site root, ie: /images/my-logo.png. You can leave empty as well and only use a header text.'
+                widget: 'string'
+                default: "/images/clearstatus.svg"
+              - label: 'Meta description'
+                name: 'meta_description'
+                hint: 'Invisible meta tag to describe your status page. Read by search engines for instance. You should probably include your name in it.'
+                widget: 'text'
+                default: "This status page provides updated information about our systems normal operation, incidents that may happen and their resolution."
+              - label: 'Header description'
+                name: 'description_header'
+                hint: 'Full text to be displayed at the top of the status page.'
+                widget: 'text'
+                default: "Information about <a class='text-grey-darkest' title='Visit example.com' href='https://www.example.com/'>example</a> systems operations.<br />Follow us <a class='text-grey-darkest' title='Visit our page on Twitter' href='https://www.twitter.com/example'>on Twitter</a> or subscribe to <a href='%s'>RSS</a><br />to be alerted of new events."
+              - label: 'Footer description'
+                name: 'description_footer'
+                hint: 'Text to be displayed at the bottom of the status page'
+                widget: 'text'
+                default: "<a class='text-grey-darkest' title='Visit example.com' href='https://www.example.com/'>Example.com</a> provides open-source software for all kind of sectors."
+              - label: 'Copyright holder'
+                name: 'copyrightHolder'
+                hint: 'The entity which owns the status page.'
+                widget: 'string'
+                default: "Example Inc."
+              - label: 'Events per page'
+                name: 'eventsPerPage'
+                hint: 'How many events to display per page in the Past events section'
+                widget: 'number'
+                default: 10
+                valueType: "int"
+                min: 3
+                max: 30
