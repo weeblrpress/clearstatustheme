@@ -61,3 +61,36 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+/**
+  Custom styles
+ */
+
+.cls-past-event-content {
+    overflow: hidden;
+    max-height: 8em;
+}
+
+.cls-past-event-content.cls-overflowing.cls-expanded {
+    overflow: auto;
+    max-height: none;
+}
+
+.cls-read-more {
+    position: relative;
+    top: -1em;
+
+}
+
+.cls-past-event-read-more {
+    display: none;
+    line-height: 3;
+}
+
+.cls-overflowing + .cls-past-event-read-more {
+    display: block;
+}
+
+.cls-expanded + .cls-past-event-read-more {
+    display: none
+}
