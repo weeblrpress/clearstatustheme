@@ -1,0 +1,67 @@
+# Netlify CMS configuration for use with ClearStatus
+backend:
+  name: git-gateway
+  branch: master
+
+# This line should *not* be indented
+media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
+
+## Content definition
+collections:
+  - name: "issue"
+    label: "Event"
+    folder: "content/issues"
+    create: true
+    slug: "{{ .Site.Params.NetlifySlug }}"
+    fields:
+      - {label: "Section", name: "section", widget: "hidden", default: "issue"}
+      - {label: "Title", name: "title", widget: "string", hint: "A short descriptive title for the event."}
+      - {label: "Date", name: "date", widget: "datetime", hint: "The date and time at which the event started or is scheduled."}
+      - label: "Status"
+        name: "status"
+        hint: "The current state of the affected systems."
+        widget: "select"
+        default: "in_progress"
+        options:
+          - { label: "Resolved", value: "resolved" }
+          - { label: "In progress", value: "in_progress" }
+          - { label: "Scheduled", value: "scheduled" }
+      - label: "Current severity"
+          name: "current_severity"
+          hint: "How severe is the event for the affected systme right now."
+          widget: "select"
+          default: "down"
+          options:
+            - { label: "Up", value: "ok" }
+            - { label: "Disrupted", value: "disrupted" }
+            - { label: "Down", value: "down" }
+            - { label: "Monitoring", value: "monitoring" }
+            - { label: "Maintenance", value: "maintenance" }
+      - label: "Max severity"
+        name: "max_severity"
+        hint: "What was the maximum severity of the event until its resolution. Used when the event is displayed in the Past events section."
+        widget: "select"
+        default: "down"
+        options:
+          - { label: "Up", value: "ok" }
+          - { label: "Disrupted", value: "disrupted" }
+          - { label: "Down", value: "down" }
+          - { label: "Monitoring", value: "monitoring" }
+          - { label: "Maintenance", value: "maintenance" }
+      - label: "Resolved on"
+        name: "resolved_on"
+        widget: "datetime"
+        hint: ""
+      - label: "Affected systems"
+        name: "affected"
+        hint: "Which of your systems are affected by the event. Use exact same name as in your config file."
+        widget: "select"
+        options:
+{{ range .Site.Params.Systems }}          - { label: "{{ .name }}", value: "{{ .name }}" }
+{{ end }}
+      - label: "Event description"
+        name: "body"
+        hint: "Description of the event as it happens and what you do about it. You can come back several times and update that description."
+        widget: "markdown"
+        default: ""

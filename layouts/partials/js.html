@@ -4,12 +4,12 @@
     return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
   }
 
-  if (hasClass(document.querySelector('body'), 'status-homepage')) {
+  if (hasClass(document.querySelector('body'), 'clearstatus-home')) {
     var lastUpdate = new Date();
   }
 
   window.setInterval(function() {
-    if (hasClass(document.querySelector('body'), 'status-homepage')) {
+    if (hasClass(document.querySelector('body'), 'clearstatus-home')) {
       if (lastUpdate > 120000) {
         location.reload;
       }

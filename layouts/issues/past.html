@@ -26,7 +26,7 @@
 
         {{ if eq .Params.status "resolved" }}
 
-            {{ $t := (time .Params.resolvedOn) }}
+            {{ $t := (time .Params.resolved_on) }}
             {{ $timeDiff := (sub $t.Unix .Date.Unix) }}
             {{ $diffInMin := (div $timeDiff 60) }}
 
