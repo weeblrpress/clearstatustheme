@@ -75,9 +75,10 @@ collections:
     editor:
       preview: false
     files:
-      - name: "general"
+      - name: "main"
         label: "Status page configuration"
         file: "config.yml"
+        fields:
           - label: 'Site title'
             name: 'title'
             hint: 'Complete page title'
