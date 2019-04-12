@@ -28,16 +28,16 @@ collections:
           - { label: "In progress", value: "in_progress" }
           - { label: "Scheduled", value: "scheduled" }
       - label: "Current severity"
-          name: "current_severity"
-          hint: "How severe is the event for the affected systme right now."
-          widget: "select"
-          default: "down"
-          options:
-            - { label: "Up", value: "ok" }
-            - { label: "Disrupted", value: "disrupted" }
-            - { label: "Down", value: "down" }
-            - { label: "Monitoring", value: "monitoring" }
-            - { label: "Maintenance", value: "maintenance" }
+        name: "current_severity"
+        hint: "How severe is the event for the affected systme right now."
+        widget: "select"
+        default: "down"
+        options:
+          - { label: "Up", value: "ok" }
+          - { label: "Disrupted", value: "disrupted" }
+          - { label: "Down", value: "down" }
+          - { label: "Monitoring", value: "monitoring" }
+          - { label: "Maintenance", value: "maintenance" }
       - label: "Max severity"
         name: "max_severity"
         hint: "What was the maximum severity of the event until its resolution. Used when the event is displayed in the Past events section."
