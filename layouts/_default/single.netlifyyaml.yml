@@ -11,7 +11,7 @@ public_folder: "/images/uploads" # The src attribute for uploaded media will beg
 collections:
   - name: "issue"
     label: "Event"
-    folder: "content/issues"
+    folder: "content/default/issues"
     create: true
     slug: "{{ .Site.Params.NetlifySlug }}"
     fields:
