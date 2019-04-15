@@ -39,6 +39,10 @@ params:
   # Path to logo image from the /static folder.
   logo: "/images/clearstatus.svg"
 
+  # favicon
+  icon: "/images/clearstatus.png"
+  iconType: "image/png"
+
   # Descriptions
   meta_description: "This status page provides updated information about our systems normal operation, incidents that may happen and their resolution."
   description_footer: "<a class='text-grey-darkest' title='Visit example.com' href='https://www.example.com/'>Example.com</a> provides open-source software for all kind of sectors."
