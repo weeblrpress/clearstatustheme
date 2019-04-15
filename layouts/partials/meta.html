@@ -22,7 +22,7 @@
       <style>
           {{ if .Site.Params.EnablePostCSSProcessing }}
               {{ $postCssOpts := (dict "config" .Site.Params.PostCSSConfigFolder "noMap" true) }}
-              {{ with resources.Get .Site.Params.FullCSSSourceFile | postCSS $postCssOpts | minify }}
+              {{ with resources.Get .Site.Params.FullCSSSourceFile | postCSS $postCssOpts }}
               {{ .Content | safeCSS }}
               {{ end }}
           {{ else }}
