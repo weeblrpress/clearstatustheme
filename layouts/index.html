@@ -40,11 +40,17 @@
 
     <div class="container w-full max-w-md mx-auto p-4">
 
-        <div class="max-w-md w-full border {{ .Site.Params.BordersColor }} rounded flex flex-col justify-between leading-normal mt-4 mb-0">
+        <div class="max-w-md w-full border {{ .Site.Params.BordersColor }} rounded flex flex-col justify-between mt-4 mb-0">
 
-            <div class="text-sm {{ $severityColor }} {{ $severityBgColor }} rounded flex items-center justify-between px-4 py-2">
-                <span class="text-xl font-semibold">{{ $globalMessage }}</span>
-                <span class="text-xl cursor-pointer mr-4" onclick="location.reload()">⟳</span>
+            <div class="text-xl {{ $severityColor }} {{ $severityBgColor }} rounded flex items-center justify-between p-4">
+                <span class="font-semibold">{{ $globalMessage }}</span>
+                <svg onclick="location.reload()" class="fill-current cursor-pointer mr-4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewBox="0 0 24 24" version="1.1" width="24px" height="24px">
+                    <g>
+                        <path style=" "
+                              d="M 7.59375 3 L 9.0625 5 L 13 5 C 16.324219 5 19 7.675781 19 11 L 19 15 L 16 15 L 20 20.46875 L 24 15 L 21 15 L 21 11 C 21 6.59375 17.40625 3 13 3 Z M 4 3.53125 L 0 9 L 3 9 L 3 13 C 3 17.40625 6.59375 21 11 21 L 16.40625 21 L 14.9375 19 L 11 19 C 7.675781 19 5 16.324219 5 13 L 5 9 L 8 9 Z "/>
+                    </g>
+                </svg>
             </div>
         </div>
 
@@ -145,36 +151,36 @@
       <!-- If there are more than 2 pages, show pagination -->
       {{ if gt $paginator.TotalPages 1 }}
 
-        <div class="w-full max-w-md flex justify-between mb-6">
-              {{ if $paginator.HasPrev }}
-                <a class="{{ $.Site.Params.PaginationLinksColor }}" href="{{ $paginator.Prev.URL }}#incidents">
-                  ⭠ &nbsp;
-                  {{ T "prev" }}
-                </a>
-              {{ else }}
-                <span class="{{ $.Site.Params.DisabledPaginationLinksColor }}">
-                  ⭠ &nbsp;
-                  {{ T "prev" }}
-                </span>
-              {{ end }}
-              <span class="px-4 {{ $.Site.Params.PaginationLinksColor }}">
+      <div class="w-full max-w-md flex justify-between mb-6">
+          {{ if $paginator.HasPrev }}
+          <a class="{{ $.Site.Params.PaginationLinksColor }}" href="{{ $paginator.Prev.URL }}#incidents">
+              <span class="text-xl">&lsaquo;</span>
+              {{ T "prev" }}
+          </a>
+          {{ else }}
+          <span class="{{ $.Site.Params.DisabledPaginationLinksColor }}">
+              <span class="text-xl">&lsaquo;</span>
+              {{ T "prev" }}
+          </span>
+          {{ end }}
+          <span class="px-4 {{ $.Site.Params.PaginationLinksColor }}">
               {{ $paginator.PageNumber }}
               /
               {{ $paginator.TotalPages }}
               </span>
 
-              {{ if $paginator.HasNext }}
-                <a class="{{ $.Site.Params.PaginationLinksColor }}" href="{{ $paginator.Next.URL }}#incidents">
-                  {{ T "next" }} &nbsp;
-                  ⭢
-                </a>
-              {{ else }}
-                <span class="{{ $.Site.Params.DisabledPaginationLinksColor }}">
-                  {{ T "next" }} &nbsp;
-                  ⭢
-                </span>
-              {{ end }}
-        </div>
+          {{ if $paginator.HasNext }}
+          <a class="{{ $.Site.Params.PaginationLinksColor }}" href="{{ $paginator.Next.URL }}#incidents">
+              {{ T "next" }}
+              <span class="text-xl">&rsaquo;</span>
+          </a>
+          {{ else }}
+          <span class="{{ $.Site.Params.DisabledPaginationLinksColor }}">
+              {{ T "next" }}
+              <span class="text-xl">&rsaquo;</span>
+          </span>
+          {{ end }}
+      </div>
       {{ end }}
     {{ end }}
   </div>

@@ -56,9 +56,9 @@
   translation: This status page has not logged any incident so far!
 
 - id: prev
-  translation: Previous
+  translation: More recent
 - id: next
-  translation: Next
+  translation: Older
 
 ##
 ## OTHER
