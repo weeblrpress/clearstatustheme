@@ -35,12 +35,12 @@
     </div>
 
     <div class="flex items-center justify-between {{ .Site.Params.ScheduledBodyBackground }} rounded-b px-4 pb-4 pr-8">
-        <div class="max-w-xs text-right leading-loose">
+        <div class="max-w-xs text-right leading-loose mr-2">
             {{ range .Params.Affected }}
             <span class="rounded px-3 py-1 text-sm mx-1 {{ $.Site.Params.AffectedBackground }} {{ $.Site.Params.AffectedColor }}">{{ . }}</span>
             {{ end }}
         </div>
-        <div class="pt-2 pb-4 text-center">
+        <div class="ml-2 pt-2 pb-4 text-center">
             {{ $itemsCount := len .Params.Affected }}
             {{ $text := T "willBe" }}
             {{ if gt $itemsCount 1 }}
