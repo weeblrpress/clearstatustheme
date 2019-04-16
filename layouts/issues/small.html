@@ -40,7 +40,7 @@
             {{ $text = T "are"}}
             {{ end }}
             <p class="text-sm mb-1">{{ $text }}</p>
-            <span class="{{ $severityColor }} {{ $severityBgColor }} rounded px-3 py-2 font-semibold">{{ T .Params.current_severity }}</span>
+            <p class="{{ $severityColor }} {{ $severityBgColor }} rounded px-3 py-2 font-semibold">{{ T .Params.current_severity }}</p>
         </div>
     </div>
 </div>
