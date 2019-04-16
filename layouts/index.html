@@ -86,7 +86,7 @@
                 {{ end }}
                 <div class="w-full table-row bg-transparent {{ $borderType }} {{ $.Site.Params.ComponentsBorders }}">
                     <div class="table-cell p-4">
-                        {{ if ne .link ""}}
+                        {{ if .link }}
                         <a class="{{ $.Site.Params.ComponentsColor }} no-underline" href="{{ .link }}">
                             <p class="text-lg font-semibold pb-1">{{ .name }}</p>
                             <p class="text-sm text-grey-darkest mt-1">{{ .description }}</p>
