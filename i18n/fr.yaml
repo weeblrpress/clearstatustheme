@@ -68,6 +68,8 @@
   translation: Revenir à
 - id: backToTop
   translation: Haut de page
+- id: backToList
+  translation: Retour à la liste
 
 - id: notFound
   translation: Impossible de trouver cette page.

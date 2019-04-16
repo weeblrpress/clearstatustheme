@@ -68,6 +68,8 @@
   translation: Go back to
 - id: backToTop
   translation: Back to top
+- id: backToList
+  translation: Back to event list
 
 - id: notFound
   translation: We could not find this page.
