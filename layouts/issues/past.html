@@ -68,10 +68,10 @@
         </div>
     </div>
 
-    <div class="flex items-center justify-between {{ .Site.Params.PastBodyBackground }} rounded-b px-4 pb-4 pr-8">
+    <div class="flex items-center justify-between {{ .Site.Params.PastBodyBackground }} rounded-b px-4 pb-4 pr-4">
         <div class="max-w-xs leading-loose mr-2">
             {{ range .Params.Affected }}
-            <span class="rounded px-3 py-1 text-sm mx-1 {{ $.Site.Params.AffectedBackground }} {{ $.Site.Params.AffectedColor }}">{{ . }}</span>
+            <span class="rounded px-3 py-1 text-sm mr-1 {{ $.Site.Params.AffectedBackground }} {{ $.Site.Params.AffectedColor }}">{{ . }}</span>
             {{ end }}
         </div>
         <div class="ml-2 pt-2 pb-4 text-center">
