@@ -4,7 +4,7 @@
 {{ if .Site.Params.dateFormat }}
 {{ $dateFormat = .Site.Params.dateFormat }}
 {{ end }}
-<div class="max-w-md w-full lg:flex shadow-md {{ .Site.Params.PastBodyColor }} rounded flex flex-col justify-between leading-normal mb-8 text-sm md:text-lg">
+<div class="max-w-lg w-full lg:flex shadow-md {{ .Site.Params.PastBodyColor }} rounded flex flex-col justify-between leading-normal mb-8 text-sm md:text-lg">
 
     <div class="{{ $severityColor }} {{ $severityBgColor }} rounded-t flex items-center justify-between px-4 py-2 ">
         <a class="py-1 flex items-center no-underline text-black" href="{{ .Permalink }}">

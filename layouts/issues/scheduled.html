@@ -18,7 +18,7 @@
 {{ $dateFormat = .Site.Params.dateFormat }}
 {{ end }}
 
-<div class="max-w-md w-full lg:flex shadow-md  {{ .Site.Params.ScheduledBodyColor }} rounded flex flex-col justify-between leading-normal my-8 text-sm md:text-lg">
+<div class="max-w-lg w-full lg:flex shadow-md  {{ .Site.Params.ScheduledBodyColor }} rounded flex flex-col justify-between leading-normal my-8 text-sm md:text-lg">
 
     <div class="{{ .Site.Params.ScheduledHeaderBackground }} {{ .Site.Params.ScheduledHeaderColor }} rounded-t flex items-center px-4 py-2 justify-between">
         <a class="py-1 flex items-center no-underline {{ .Site.Params.ScheduledHeaderTitleColor }} text-black" href="{{ .Permalink }}">

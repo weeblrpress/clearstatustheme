@@ -16,7 +16,7 @@
 {{ $dateFormat = .Site.Params.dateFormat }}
 {{ end }}
 
-<div class="max-w-md w-full lg:flex shadow-md {{ .Site.Params.SmallBodyColor }} rounded flex flex-col justify-between leading-normal mb-8 text-sm md:text-lg">
+<div class="max-w-lg w-full lg:flex shadow-md {{ .Site.Params.SmallBodyColor }} rounded flex flex-col justify-between leading-normal mb-8 text-sm md:text-lg">
 
     <div class="{{ $severityBgColor }} rounded-t flex items-center px-4 py-2 justify-between">
         <a class="py-1 flex items-center no-underline {{ $severityColor }}" href="{{ .Permalink }}">
@@ -25,9 +25,16 @@
         </a>
     </div>
 
-    <div class="{{ .Site.Params.SmallBodyBackground }} p-4">
-        <div class="font-bold text-xl my-2 {{ .Site.Params.ScheduledBodyTitleColor }}">{{ .Title }}</div>
-        <div class="my-4">{{ .Content | safeHTML }}</div>
+    <div class="{{ .Site.Params.SmallBodyBackground }} md:flex justify-between p-4">
+        <div>
+            <div class="font-bold text-xl my-2 {{ .Site.Params.ScheduledBodyTitleColor }}">{{ .Title }}</div>
+            <div class="my-4">{{ .Content | safeHTML }}</div>
+        </div>
+        {{ if .Params.twitterFeed }}
+        <div class="md:w-1/2 lg:w-1/3 flex-none mx-auto mt-4 border">
+            <a class="twitter-timeline" data-height="400" data-dnt="true" href="{{ .Params.twitterFeed }}">Tweets by WeeblrPress</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        {{ end }}
     </div>
 
     <div class="flex items-center justify-between {{ .Site.Params.SmallBodyBackground }} rounded-b px-4 pb-4 pr-4">

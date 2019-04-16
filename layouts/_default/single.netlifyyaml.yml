@@ -61,6 +61,11 @@ collections:
         options:
 {{ range .Site.Params.Systems }}          - { label: "{{ .name }}", value: "{{ .name }}" }
 {{ end }}
+      - label: "Twitter feed"
+        name: "twitterFeed"
+        hint: ""
+        widget: "string"
+        default: ""
       - label: "Event description"
         name: "body"
         hint: "Description of the event as it happens and what you do about it. You can come back several times and update that description."
