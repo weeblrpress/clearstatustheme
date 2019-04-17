@@ -57,13 +57,13 @@
             {{ $severityBgColor = .Site.Params.scheduledHeaderBackground }}
             {{ $severityColor = .Site.Params.scheduledHeaderTitleColor }}
         {{ else if ne $isResolved true }}
-            {{ if eq .Params.max_severity "down" }}
+            {{ if eq .Params.current_severity "down" }}
                 {{ $severityBgColor = .Site.Params.DownSeverityBackground }}
                 {{ $severityColor = .Site.Params.DownSeverityColor }}
-            {{ else if eq .Params.max_severity "disrupted" }}
+            {{ else if eq .Params.current_severity "disrupted" }}
                 {{ $severityBgColor = .Site.Params.DisruptedSeverityBackground }}
                 {{ $severityColor = .Site.Params.DisruptedSeverityColor }}
-            {{ else if eq .Params.max_severity "monitoring" }}
+            {{ else if eq .Params.current_severity "monitoring" }}
                 {{ $severityBgColor = .Site.Params.MonitoringSeverityBackground }}
                 {{ $severityColor = .Site.Params.MonitoringSeverityColor }}
             {{ end }}
@@ -104,24 +104,28 @@
                 <div class="ml-2 pt-2 pb-4 text-center">
                     {{ $itemsCount := len .Params.Affected }}
                     {{ $text := ""}}
+                    {{ $severity := ""}}
                     {{ if $isScheduled }}
                         {{ $text = T "willBe" }}
                         {{ if gt $itemsCount 1 }}
                         {{ $text = T "willBePlural"}}
                         {{ end }}
+                        {{ $severity = T .Params.max_severity }}
                     {{ else if $isResolved }}
                         {{ $text = T "was" }}
                         {{ if gt $itemsCount 1 }}
                         {{ $text = T "were"}}
                         {{ end }}
+                        {{ $severity = T .Params.max_severity }}
                     {{ else }}
                         {{ $text = T "is" }}
                         {{ if gt $itemsCount 1 }}
                         {{ $text = T "are"}}
                         {{ end }}
+                        {{ $severity = T .Params.current_severity }}
                     {{ end }}
                     <p class="text-sm mb-1">{{ $text }}</p>
-                    <p class="{{ $severityColor }} {{ $severityBgColor }} rounded px-3 py-2 font-semibold">{{ T .Params.max_severity }}</p>
+                    <p class="{{ $severityColor }} {{ $severityBgColor }} rounded px-3 py-2 font-semibold">{{ $severity }}</p>
                 </div>
             </div>
         </div>
