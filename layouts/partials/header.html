@@ -1,8 +1,6 @@
 {{ partial "custom/above-header" . }}
-{{ $topmargin:= "mt-8" }}
 {{ if .Site.IsMultiLingual }}
-{{ $topmargin = "" }}
-<div class="text-sm my-2">
+<div class="text-sm mb-4">
     <ul class="list-reset flex justify-center">
         {{ if .IsTranslated -}}
         {{ range .Translations }}
@@ -24,7 +22,7 @@
 </div>
 {{ end }}
 
-<div class="w-full {{ $topmargin }} {{ .Site.Params.HeaderBackground }} {{ .Site.Params.HeaderColor }} ">
+<div class="w-full {{ .Site.Params.HeaderBackground }} {{ .Site.Params.HeaderColor }} mb-8">
     {{ if .Site.Params.logo }}
     <div class="w-full max-w-lg mx-auto md:flex items-center justify-between px-4 py-6">
         <a href="{{ $.Site.BaseURL }}" class="no-underline flex-no-shrink max-w-xs w-1/3">

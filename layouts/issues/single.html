@@ -1,9 +1,18 @@
 {{ partial "meta" . }}
 
 {{ $incidents := where .Site.RegularPages "Params.section" "issue" }}
+
+{{ $topPinnedIssues := where $incidents "Params.pinned" "eq" "top"}}
+{{ $belowheaderPinnedIssues := where $incidents "Params.pinned" "eq" "belowheader"}}
+
 {{ $pastIncidents := where $incidents "Params.status" "=" "resolved" }}
+{{ $pastIncidents := $pastIncidents | complement $topPinnedIssues $belowheaderPinnedIssues }}
+
 {{ $active := where $incidents "Params.status" "=" "in_progress" }}
+{{ $active := $active | complement $topPinnedIssues $belowheaderPinnedIssues }}
+
 {{ $scheduled := where $incidents "Params.status" "=" "scheduled" }}
+{{ $scheduled := $scheduled | complement $topPinnedIssues $belowheaderPinnedIssues }}
 
 {{ $isMaintenance := where $active "Params.current_severity" "=" "maintenance" }}
 {{ $isMonitoring := where $active "Params.current_severity" "=" "monitoring" }}
@@ -38,11 +47,27 @@
 {{ $isScheduled := eq .Params.status "scheduled" }}
 {{ $isResolved := eq .Params.status "resolved" }}
 
-  <body class="clearstatus-single {{ .Site.Params.BodyBackground }}">
+  <body class="clearstatus-single {{ .Site.Params.BodyBackground }} pt-4">
+
+    {{ if $topPinnedIssues }}
+    <div class="container w-full max-w-lg mx-auto px-4 mb-4">
+        {{ range $topPinnedIssues }}
+        {{ .Render "pinned" }}
+        {{ end }}
+    </div>
+    {{ end }}
 
     {{ partial "header" . }}
 
-    <div class="container w-full max-w-lg mx-auto mt-4 px-4 pt-4 text-center">
+    {{ if $belowheaderPinnedIssues }}
+    <div class="container w-full max-w-lg mx-auto px-4 mb-8">
+        {{ range $belowheaderPinnedIssues }}
+        {{ .Render "pinned" }}
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="container w-full max-w-lg mx-auto px-4 mb-4 text-center">
         <a class="text-black bg-grey-light rounded-sm px-3 py-2 no-underline" href="/" title="Back to list of events">{{ T "backToList" }}</a>
     </div>
 

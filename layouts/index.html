@@ -1,9 +1,18 @@
 {{ partial "meta" . }}
 
 {{ $incidents := where .Site.RegularPages "Params.section" "issue" }}
+
+{{ $topPinnedIssues := where $incidents "Params.pinned" "eq" "top"}}
+{{ $belowheaderPinnedIssues := where $incidents "Params.pinned" "eq" "belowheader"}}
+
 {{ $pastIncidents := where $incidents "Params.status" "=" "resolved" }}
+{{ $pastIncidents := $pastIncidents | complement $topPinnedIssues $belowheaderPinnedIssues }}
+
 {{ $active := where $incidents "Params.status" "=" "in_progress" }}
+{{ $active := $active | complement $topPinnedIssues $belowheaderPinnedIssues }}
+
 {{ $scheduled := where $incidents "Params.status" "=" "scheduled" }}
+{{ $scheduled := $scheduled | complement $topPinnedIssues $belowheaderPinnedIssues }}
 
 {{ $isMaintenance := where $active "Params.current_severity" "=" "maintenance" }}
 {{ $isMonitoring := where $active "Params.current_severity" "=" "monitoring" }}
@@ -35,20 +44,35 @@
   {{ $globalMessage = T "isOk" }}
 {{ end }}
 
-  <body class="clearstatus-home {{ .Site.Params.BodyBackground }}">
+  <body class="clearstatus-home {{ .Site.Params.BodyBackground }} pt-4">
+
+    {{ if $topPinnedIssues }}
+    <div class="container w-full max-w-lg mx-auto px-4 mb-4">
+        {{ range $topPinnedIssues }}
+            {{ .Render "pinned" }}
+        {{ end }}
+    </div>
+    {{ end }}
+
     {{ partial "header" . }}
 
-    <div class="container w-full max-w-lg mx-auto p-4">
+    {{ if $belowheaderPinnedIssues }}
+    <div class="container w-full max-w-lg mx-auto px-4 mb-8">
+        {{ range $belowheaderPinnedIssues }}
+        {{ .Render "pinned" }}
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="container w-full max-w-lg mx-auto px-4 mb-8">
         {{ $statusParams := (dict "globalMessage" $globalMessage "severityColor" $severityColor "severityBgColor" $severityBgColor "context" .) }}
         {{ partial "globalstatus"  $statusParams }}
 
-        {{ if $active }}
-          {{ range $active }}
-            {{ .Render "small" }}
-          {{ else }}{{ end }}
+        {{ range $active }}
+          {{ .Render "small" }}
         {{ end }}
 
-        <div class="w-full shadow-md table border-collapse rounded border-l border-r {{ $.Site.Params.ComponentsBackground }} {{ .Site.Params.BordersColor }}">
+        <div class="w-full shadow-md table border-collapse rounded border-l border-r {{ $.Site.Params.ComponentsBackground }} {{ .Site.Params.BordersColor }} mb-12">
             {{ $systems := .Site.Params.systems }}
             {{ $systemsCount := 0 }}
             {{ range $index, $item := $systems }}
@@ -111,12 +135,12 @@
       {{ partial "custom/homepage-summary" . }}
   </div>
 
-  <div class="container max-w-lg mx-auto my-8 text-center border-b {{ .Site.Params.VisibleBordersColor }} {{ .Site.Params.BodyColor }} pb-2">
+  <div class="container max-w-lg mx-auto mb-8 text-center border-b {{ .Site.Params.VisibleBordersColor }} {{ .Site.Params.BodyColor }}">
     <h2 >{{ T "incidentHistory" }}</h2>
   </div>
 
 
-  <div class="container max-w-lg mx-auto p-4" id="incidents">
+  <div class="container max-w-lg mx-auto px-4" id="incidents">
     {{ if not $pastIncidents }}
       <div class="w-full max-w-lg mb-6 align-bottom">
         <h3>{{ T "noEventsTitle" }}</h3>
