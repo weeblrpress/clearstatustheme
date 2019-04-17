@@ -7,5 +7,5 @@
 </div>
 
 <div class="w-full mt-0 mb-4 text-right {{ .context.Site.Params.refreshColor }}">
-    <small><em>{{ T "autoRefreshNotice" }}</em></small>
+    <small><em>{{ T "autoRefreshNotice" | safeHTML }}</em></small>
 </div>

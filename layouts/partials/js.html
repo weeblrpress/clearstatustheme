@@ -1,11 +1,18 @@
 <script type="text/javascript">
-    var lastUpdate = new Date();
+    var msecondsBeforeReloads = 120000
+    var lastReload = new Date();
+    var reloadCountDownElement = document.getElementById('js-cls-reload-countdown')
+    reloadCountDownElement.textContent = Math.round(msecondsBeforeReloads / 1000)
 
     window.setInterval(function () {
         var now = new Date();
-        if (now - lastUpdate > 120000) {
+        var msecondsLeft = now - lastReload
+        if (msecondsLeft > msecondsBeforeReloads) {
             location.reload();
+        } else {
+            reloadCountDownElement.textContent = Math.round((120000 - msecondsLeft) / 1000)
         }
+
     }, 5000)
 
     var pastEvents = document.querySelectorAll('.cls-past-event-content')

@@ -10,7 +10,7 @@
   translation: FRA
 
 - id: autoRefreshNotice
-  translation: Mise à jour auto toutes les 2 mn
+  translation: Mise à jour dans&nbsp;<span id="js-cls-reload-countdown">{{ .secondsLeft }}</span>&nbsp;secondes
 - id: rss
   translation: Abonnement RSS
 

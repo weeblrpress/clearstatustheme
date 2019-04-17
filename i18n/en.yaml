@@ -10,7 +10,7 @@
   translation: ENG
 
 - id: autoRefreshNotice
-  translation: Page refreshed every 2 min
+  translation: Page will refresh in&nbsp;<span id="js-cls-reload-countdown">{{ .secondsLeft }}</span>&nbsp;seconds
 - id: rss
   translation: Subscribe via RSS
 
