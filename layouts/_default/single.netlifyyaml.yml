@@ -71,9 +71,14 @@ collections:
 {{ end }}
       - label: "Twitter feed"
         name: "twitterFeed"
-        hint: ""
+        hint: "If set and the status is in_progress, this feed will be embedded in the event display. Leave empty for no Twitter feed."
         widget: "string"
         default: ""
+      - label: "Enable comments"
+        name: "enableComments"
+        hint: "Enable/disable on this page. Currently with Disqus. You need to set your Disqus short name on the Settings page for this to work."
+        widget: "boolean"
+        default: true
       - label: "Event description"
         name: "body"
         hint: "Description of the event as it happens and what you do about it. You can come back several times and update that description."
@@ -155,6 +160,11 @@ collections:
                 hint: 'The entity which owns the status page.'
                 widget: 'string'
                 default: "Example Inc."
+              - label: 'Disqus shortname'
+                name: 'disqusShortname'
+                hint: 'Disqus commenting: set your Disqus shortname here. Leave emtpy for no discussion at all. You can then enable/disable discussions per issue'
+                widget: 'string'
+                default: ""
               - label: 'Events per page'
                 name: 'eventsPerPage'
                 hint: 'How many events to display per page in the Past events section'

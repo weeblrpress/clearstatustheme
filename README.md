@@ -21,7 +21,7 @@ We've created ClearStatus to do just that for our own operations at [WeeblrPress
 - High-availability (Netlify)
 - 100% secure: static content cannot be hacked
 - All content under you control
-- Unlimited users, issues
+- Unlimited users, issues and status pages
 - Mobile/tablets/desktop
 - Highly customizable and expandable
 

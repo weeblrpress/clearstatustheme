@@ -50,6 +50,11 @@ params:
 
   copyrightHolder: "Example Inc."
 
+  # Disqus commenting per issue: set your Disqus shortname here
+  # Leave emtpy for no discussion at all.
+  # You can then enable/disable discussions per issue
+  disqusShortname:
+
   # Layout
   eventsPerPage: 10
 
