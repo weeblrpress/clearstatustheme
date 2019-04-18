@@ -1,6 +1,6 @@
 {{ $commentsCount := "" }}
 {{ if .Site.Params.DisqusShortname }}
     {{ if .Params.enableComments }}
-        <span data-disqus-url="{{ .Permalink | absURL }}"></span>
+        <span class="disqus-comment-count" data-disqus-url="{{ .Permalink | absURL }}"></span>
     {{ end }}
 {{ end }}
