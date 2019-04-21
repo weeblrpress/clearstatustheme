@@ -11,6 +11,9 @@
 
 - id: autoRefreshNotice
   translation: Page will refresh in&nbsp;<span id="js-cls-reload-countdown">{{ .secondsLeft }}</span>&nbsp;seconds
+- id: autoRefreshTitle
+  translation: Click to refresh page now
+
 - id: rss
   translation: Subscribe via RSS
 

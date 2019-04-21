@@ -101,9 +101,9 @@
         <div class="max-w-lg w-full lg:flex shadow-md {{ .Site.Params.SmallBodyColor }} rounded flex flex-col justify-between leading-normal mb-8 text-sm md:text-lg">
 
             <div class="{{ $severityBgColor }} rounded-t px-4 py-2">
-                <span class="py-1 no-underline {{ $severityColor }}">
+                <time datetime="{{ .Date }}" class="py-1 no-underline {{ $severityColor }}">
                     {{ .Date.Format $dateFormat }}{{ .Site.Params.TimezoneString }}{{ i18n "timezoneString" }}
-                </span>
+                </time>
             </div>
 
             <div class="{{ .Site.Params.SmallBodyBackground }} md:flex justify-between p-4">

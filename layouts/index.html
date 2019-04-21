@@ -73,59 +73,7 @@
         {{ end }}
 
         <div class="w-full shadow-md table border-collapse rounded border-l border-r {{ $.Site.Params.ComponentsBackground }} {{ .Site.Params.BordersColor }} mb-12">
-            {{ $systems := .Site.Params.systems }}
-            {{ $systemsCount := 0 }}
-            {{ range $index, $item := $systems }}
-              {{ $systemsCount = $index }}
-            {{ end }}
-
-            {{ $borderType := "border-b"}}
-            {{ range $index, $el := $systems }}
-                {{ $activeComponentIssues := where $active "Params.affected" "intersect" (slice .name) }}
-
-                {{ $thisIsMaintenance := where $activeComponentIssues "Params.current_severity" "=" "maintenance" }}
-                {{ $thisIsMonitoring := where $activeComponentIssues "Params.current_severity" "=" "monitoring" }}
-                {{ $thisIsDisrupted := where $activeComponentIssues "Params.current_severity" "=" "disrupted" }}
-                {{ $thisIsDown := where $activeComponentIssues "Params.current_severity" "=" "down" }}
-                {{ $thisIsOk := where $activeComponentIssues "Params.current_severity" "=" "ok" }}
-
-                {{ $currentSeverity := "ok"}}
-                {{ $currentSeverityColor := "text-green-dark"}}
-                {{ if $thisIsDown }}
-                    {{ $currentSeverity = "down"}}
-                    {{ $currentSeverityColor = "text-red-dark"}}
-                {{ else if $thisIsDisrupted}}
-                    {{ $currentSeverity = "disrupted"}}
-                    {{ $currentSeverityColor = "text-orange-dark"}}
-                {{ else if $thisIsMonitoring}}
-                    {{ $currentSeverity = "monitoring"}}
-                    {{ $currentSeverityColor = "text-orange"}}
-                {{ else if $thisIsMaintenance}}
-                    {{ $currentSeverity = "maintenance"}}
-                    {{ $currentSeverityColor = "text-grey-light"}}
-                {{ end}}
-
-                {{ if eq $systemsCount $index}}
-                {{     $borderType = ""}}
-                {{ end }}
-                <div class="w-full table-row bg-transparent {{ $borderType }} {{ $.Site.Params.ComponentsBorders }}">
-                    <div class="table-cell p-4">
-                        {{ if .link }}
-                        <a class="{{ $.Site.Params.ComponentsColor }} no-underline" href="{{ .link }}">
-                            <p class="text-lg font-semibold pb-1">{{ .name }}</p>
-                            <p class="text-sm text-grey-darkest mt-1">{{ .description }}</p>
-                        </a>
-                        {{ else }}
-                        <p class="text-lg font-semibold pb-1">{{ .name }}</p>
-                        <p class="text-sm text-grey-darkest mt-1">{{ .description }}</p>
-                        {{ end }}
-                    </div>
-
-                    <div class="table-cell text-center align-middle {{ $currentSeverityColor }} p-4 ml-4">
-                        {{ T $currentSeverity }}
-                    </div>
-                </div>
-            {{ end }}
+            {{ partial "systemsstate"  (dict "context" . "active" $active) }}
         </div>
 
       {{ range $scheduled }}
