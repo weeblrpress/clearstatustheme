@@ -139,6 +139,7 @@ collections:
                 default: "15:04 — Jan 2"
               - label: 'Timezone string'
                 name: 'timezoneString'
+                required: false
                 hint: 'This will be displayed after each event time. Set it for instance to " UTC" to indicate UTC times or a specific time zone, ie  America/New_York. You can also instead used a translated string per language'
                 widget: 'string'
                 default: "15:04 — Jan 2"
