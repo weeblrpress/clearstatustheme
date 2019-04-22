@@ -144,31 +144,37 @@ collections:
                 default: "15:04 — Jan 2"
               - label: 'Logo path'
                 name: 'logo'
+                required: false
                 hint: 'Path to your logo image, relative to the site root, ie: /images/my-logo.png. You can leave empty as well and only use a header text.'
                 widget: 'string'
                 default: "/images/clearstatus.svg"
               - label: 'Meta description'
                 name: 'meta_description'
+                required: false
                 hint: 'Invisible meta tag to describe your status page. Read by search engines for instance. You should probably include your name in it.'
                 widget: 'text'
                 default: "This status page provides updated information about our systems normal operation, incidents that may happen and their resolution."
               - label: 'Header description'
                 name: 'description_header'
+                required: false
                 hint: 'Full text to be displayed at the top of the status page.'
                 widget: 'text'
                 default: "Information about <a class='text-grey-darkest' title='Visit example.com' href='https://www.example.com/'>example</a> systems operations.<br />Follow us <a class='text-grey-darkest' title='Visit our page on Twitter' href='https://www.twitter.com/example'>on Twitter</a> or subscribe to <a href='%s'>RSS</a><br />to be alerted of new events."
               - label: 'Footer description'
                 name: 'description_footer'
+                required: false
                 hint: 'Text to be displayed at the bottom of the status page'
                 widget: 'text'
                 default: "<a class='text-grey-darkest' title='Visit example.com' href='https://www.example.com/'>Example.com</a> provides open-source software for all kind of sectors."
               - label: 'Copyright holder'
                 name: 'copyrightHolder'
+                required: false
                 hint: 'The entity which owns the status page.'
                 widget: 'string'
                 default: "Example Inc."
               - label: 'Disqus shortname'
                 name: 'disqusShortname'
+                required: false
                 hint: 'Disqus commenting: set your Disqus shortname here. Leave emtpy for no discussion at all. You can then enable/disable discussions per issue'
                 widget: 'string'
                 default: ""
