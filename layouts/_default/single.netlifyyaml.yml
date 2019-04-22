@@ -103,6 +103,7 @@ collections:
             widget: 'string'
             default: ""
           - label: 'Base URL'
+            required: false
             name: 'baseURL'
             hint: 'Base URL of your status page, such as https://status.example.com. You can usually leave this empty and the URL will be auto-detected. You should fill it in when using Disqus commenting as otherwise Disqus comment counters will not work properly.'
             widget: 'string'
