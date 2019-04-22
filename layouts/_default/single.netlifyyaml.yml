@@ -33,6 +33,7 @@ collections:
         widget: "select"
         default: ""
         options:
+          - { label: "Not pinned", value: "" }
           - { label: "Top of page", value: "top" }
           - { label: "Just below the header", value: "belowheader" }
       - label: "Current severity"
@@ -57,8 +58,15 @@ collections:
           - { label: "Down", value: "down" }
           - { label: "Monitoring", value: "monitoring" }
           - { label: "Maintenance", value: "maintenance" }
+      - label: "Duration"
+        name: "duration"
+        required: false
+        hint: "Expected duration for the event. Only used for <scheduled> events. This is free text: ie 5mn, 1h, 1 hour,.."
+        widget: "string"
+        default: ""
       - label: "Resolved on"
         name: "resolved_on"
+        required: false
         widget: "datetime"
         hint: ""
       - label: "Affected systems"
@@ -71,6 +79,7 @@ collections:
 {{ end }}
       - label: "Twitter feed"
         name: "twitterFeed"
+        required: false
         hint: "If set and the status is in_progress, this feed will be embedded in the event display. Leave empty for no Twitter feed."
         widget: "string"
         default: ""
@@ -81,6 +90,7 @@ collections:
         default: true
       - label: "Event description"
         name: "body"
+        required: false
         hint: "Description of the event as it happens and what you do about it. You can come back several times and update that description."
         widget: "markdown"
         default: ""
