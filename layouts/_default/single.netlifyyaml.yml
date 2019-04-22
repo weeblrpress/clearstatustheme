@@ -29,6 +29,7 @@ collections:
           - { label: "Scheduled", value: "scheduled" }
       - label: "Pinned"
         name: "pinned"
+        required: false
         hint: "This item will be taken out of the flow of events and displayed at top of page or below the header as long as its status is marked as in_progress"
         widget: "select"
         default: ""
