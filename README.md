@@ -1,6 +1,8 @@
 <p align="center"><img src="https://cdn.weeblrpress.net/clearstatus/assets/images/clearstatus-200.svg" alt="ClearStatus Logo"></p>
 
-<p align="center"><a title="ClearStatus into video link" href="https://www.youtube.com/watch?v=wFF2OBPfalQ"><img src="https://img.youtube.com/vi/wFF2OBPfalQ/0.jpg" alt="ClearStatus status page intro video"></a></p>
+<p align="center"><a title="ClearStatus intro video link" href="https://www.youtube.com/watch?v=wFF2OBPfalQ"><img src="https://img.youtube.com/vi/wFF2OBPfalQ/0.jpg" alt="ClearStatus status page intro video"></a></p>
+<p align="center">Click image to view intro video</p>
+<p align="center">We also have a <a href="https://www.youtube.com/watch?v=f6gM84hD9Ug" title="ClearStatus setup and usage video link">full setup and usage video here.</a></p>
 
 # ClearStatus - Professional status page - 5 minutes - Free
 
@@ -34,6 +36,10 @@ And 100% free setup and operation with all the above included
 <p>&nbsp;</p>
 
 ## How it works
+
+<p align="center">Can't wait? view our video on settin up and using ClearStatus. Just click the image below</p>
+<p align="center"><a title="ClearStatus setup and usage video link" href="https://www.youtube.com/watch?v=f6gM84hD9Ug"><img src="https://img.youtube.com/vi/f6gM84hD9Ug/0.jpg" alt="ClearStatus status page setup and usage video"></a></p>
+
 
 ClearStatus is mostly a theme for the [Hugo CMS](https://gohugo.io). Hugo is a very fast static site generator. It does the bulk of the work, transforming a text file you write to describe an issue into a fully working status page.
 
