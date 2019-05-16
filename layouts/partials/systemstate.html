@@ -1,0 +1,77 @@
+{{ $borderType := "border-t"}}
+
+{{ $activeComponentIssues := where $.active "Params.affected" "intersect" (slice $.system.name) }}
+
+{{ $thisIsMaintenance := where $activeComponentIssues "Params.current_severity" "=" "maintenance" }}
+{{ $thisIsMonitoring := where $activeComponentIssues "Params.current_severity" "=" "monitoring" }}
+{{ $thisIsDisrupted := where $activeComponentIssues "Params.current_severity" "=" "disrupted" }}
+{{ $thisIsDown := where $activeComponentIssues "Params.current_severity" "=" "down" }}
+{{ $thisIsOk := where $activeComponentIssues "Params.current_severity" "=" "ok" }}
+
+{{ $currentSeverity := "ok"}}
+{{ $currentSeverityColor := "text-green-dark"}}
+{{ if $thisIsDown }}
+    {{ $currentSeverity = "down"}}
+    {{ $currentSeverityColor = "text-red-dark"}}
+{{ else if $thisIsDisrupted}}
+    {{ $currentSeverity = "disrupted"}}
+    {{ $currentSeverityColor = "text-orange-dark"}}
+{{ else if $thisIsMonitoring}}
+    {{ $currentSeverity = "monitoring"}}
+    {{ $currentSeverityColor = "text-orange"}}
+{{ else if $thisIsMaintenance}}
+    {{ $currentSeverity = "maintenance"}}
+    {{ $currentSeverityColor = "text-grey-darkest"}}
+{{ end}}
+
+{{ if eq $.index 0 }}
+    {{ $borderType = ""}}
+{{ end }}
+{{ if $.system.group }}
+    {{ $borderType = "border-t"}}
+{{ end }}
+
+{{ $groupClass := "cls-grouped-system-details hidden" }}
+{{ $indent := "p-4 pl-8"}}
+{{ $systemFontWeight := "" }}
+{{ $systemIconSize := 24 }}
+{{ $backgroundColor := "bg-grey-lighter"}}
+{{ if not $.system.group }}
+{{ $groupClass = "" }}
+{{ $indent = "p-4"}}
+{{ $systemFontWeight = "font-semibold" }}
+{{ $systemIconSize = 32 }}
+{{ $backgroundColor = "bg-transparent"}}
+{{ end }}
+
+{{ $iconPath := index $.icons $currentSeverity }}
+{{ $translatedSeverity := T $currentSeverity }}
+{{ $visibleSeverity := "" }}
+{{ if ne $currentSeverity "ok" }}
+{{ $visibleSeverity = $translatedSeverity }}
+{{ end }}
+{{ $icon := printf $.baseIcon $currentSeverityColor $systemIconSize $.index $.index $translatedSeverity $iconPath }}
+
+<div class="w-full table-row {{ $backgroundColor }} {{ $borderType }} {{ $.context.Site.Params.ComponentsBorders }} p-4 {{ $groupClass }} cls-system-{{ $.groupIndex }}">
+    <div class="table-cell align-middle {{ $indent }}">
+        {{ if $.system.link }}
+        <a class="{{ $.context.Site.Params.ComponentsColor }} no-underline" href="{{ $.system.link }}">
+            <p class="text-lg {{ $systemFontWeight }}">
+                {{ $.system.name }}
+                <svg aria-hidden="true" class="fill-current md:ml-3 align-bottom" xmlns="http://www.w3.org/2000/svg"  width="18" viewBox="0 0 512 512"><path d="M74.6 256c0-38.3 31.1-69.4 69.4-69.4h88V144h-88c-61.8 0-112 50.2-112 112s50.2 112 112 112h88v-42.6h-88c-38.3 0-69.4-31.1-69.4-69.4zm85.4 22h192v-44H160v44zm208-134h-88v42.6h88c38.3 0 69.4 31.1 69.4 69.4s-31.1 69.4-69.4 69.4h-88V368h88c61.8 0 112-50.2 112-112s-50.2-112-112-112z"/></svg>
+            </p>
+            <p class="text-sm text-grey-darkest">{{ $.system.description }}</p>
+        </a>
+        {{ else }}
+        <p class="text-lg {{ $systemFontWeight }}">{{ $.system.name }}</p>
+        <p class="text-sm text-grey-darkest">{{ $.system.description }}</p>
+        {{ end }}
+    </div>
+
+    <div class="table-cell text-center align-middle px-4">
+        {{ $icon | safeHTML }}
+        {{ if $visibleSeverity }}
+        <div class="text-xs text-grey-darkest mt-2">{{ $visibleSeverity }}</div>
+        {{ end }}
+    </div>
+</div>

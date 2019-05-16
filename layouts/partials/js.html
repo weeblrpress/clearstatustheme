@@ -31,6 +31,26 @@
             if (event.target.matches('.cls-read-more')) {
                 event.target.parentNode.previousElementSibling.classList.add('cls-expanded')
             }
+            if (event.target.matches('.cls-group-toggle')) {
+                let groupIndex = event.target.getAttribute('data-groupIndex')
+                let visibleClass = event.target.getAttribute('data-toggleClass')
+                let groupClass = '.cls-system-' + groupIndex
+                let groupRows = document.querySelectorAll(groupClass)
+                let icon = document.getElementById('cls-group-icon-' + groupIndex)
+                groupRows.forEach(
+                    function (row) {
+                        if (row.classList.contains("hidden")) {
+                            row.classList.remove("hidden")
+                            row.classList.add(visibleClass)
+                            icon.innerHTML = "-"
+                        } else {
+                            row.classList.remove(visibleClass)
+                            row.classList.add("hidden")
+                            icon.innerHTML = '+'
+                        }
+                    }
+                )
+            }
         }
     )
 

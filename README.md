@@ -25,6 +25,7 @@ We've created ClearStatus to do just that for our own operations at [WeeblrPress
 - Twitter integration
 - Disqus commenting on each issue
 - Pinned issue for security alerts
+- Individual systems can be grouped
 - Secure: static content is hard to hack
 - All content under your control
 - Multiple users, issues and status pages

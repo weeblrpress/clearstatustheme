@@ -73,7 +73,7 @@
         {{ end }}
 
         <div class="w-full shadow-md table border-collapse rounded border-l border-r {{ $.Site.Params.ComponentsBackground }} {{ .Site.Params.BordersColor }} mb-12">
-            {{ partial "systemsstate"  (dict "context" . "active" $active) }}
+            {{ partial "systems"  (dict "context" . "active" $active) }}
         </div>
 
       {{ range $scheduled }}

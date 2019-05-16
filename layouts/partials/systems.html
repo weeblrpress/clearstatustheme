@@ -1,0 +1,7 @@
+
+{{ with .context.Site.Params.groups }}
+    {{ range $groupIndex, $currentGroup := $.context.Site.Params.groups }}
+      {{ partial "systemsgroup"  (dict "context" $.context "active" $.active "currentGroup" $currentGroup "groupIndex" $groupIndex) }}
+    {{ end }}
+{{ end }}
+{{ partial "systemsgroup"  (dict "context" $.context "active" $.active "currentGroup" "" "groupIndex" "") }}

@@ -1,7 +1,7 @@
-# Netlify CMS configuration for use with ClearStatus
+# Netlify CMS configuration for use with ClearStatus {{ $groups := "" }}{{ if .Site.Params.Groups }}{{ $groups = .Site.Params.Groups }}{{ end }}
 backend:
   name: git-gateway
-  branch: master
+  branch: dev
 
 # This line should *not* be indented
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
@@ -130,14 +130,35 @@ collections:
             name: "params"
             widget: "object"
             fields:
+              - label: "Groups"
+                name: "groups"
+                allow_add: true
+                widget: "list"
+                hint: "You can group your systems if you have a large number of them. This is optional and usually not required. Enter groups separated by a comma."
+                default: []
               - label: "Systems"
                 name: "systems"
                 allow_add: true
                 widget: "list"
                 fields:
-                  - {label: "Name", name: "name", widget: string}
-                  - {label: "Description", name: "description", widget: string, required: false}
-                  - {label: "Link", name: "link", widget: string, required: false}
+                  - label: "Name"
+                    name: "name"
+                    widget: string
+                  - label: "Group"
+                    name: "group"
+                    widget: select
+                    multiple: false
+                    required: false
+{{ with $groups }}                    options:
+{{ range $groups }}                      - { label: "{{ . }}", value: "{{ . }}" }
+{{ end }}{{ end }}                  - label: "Description"
+                    name: "description"
+                    widget: string
+                    required: false
+                  - label: "Link"
+                    name: "link"
+                    widget: string
+                    required: false
               - label: 'Date format'
                 name: 'dateFormat'
                 hint: 'Format to use for full date display'

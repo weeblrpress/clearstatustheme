@@ -18,11 +18,16 @@ languageCode: en
 ############################################################
 
 params:
+  groups:
+    - Production
+    - Support
   systems:
     - name: Website
+      group:
       description: Our company public facing website
       link: https://www.example.com/
     - name: Helpdesk
+      group: Support
       description: Our company customer support site
       link: https://support.example.com/
 
