@@ -155,6 +155,8 @@ Most options should be configured through the single `config.yml` file located a
 
 Most likely the most important setting is the component definition: for instance if you run a website and a helpdesk, they are independent and can go down or up independently so they are listed separately. Use the `systems` option to set them up as needed.
 
+Note that grouped system can go up and down independently. The status of the group is the worst case: if 5 systems in a group are up but the 6th one is `Disrupted` then the group will be shown as `Disrupted`. If one system is `Down` and another is `Disrupted`, then the group will be shown as `Down`.
+
 > You can change those options as well using the **Netlify CMS** interface under the `Settings` tab.
 
 After configuring all settings and text to your liking, you should `Commit changes`. This will cause:
