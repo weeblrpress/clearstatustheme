@@ -1,7 +1,7 @@
 # Netlify CMS configuration for use with ClearStatus {{ $groups := "" }}{{ if .Site.Params.Groups }}{{ $groups = .Site.Params.Groups }}{{ end }}
 backend:
   name: git-gateway
-  branch: dev
+  branch: master
 
 # This line should *not* be indented
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
