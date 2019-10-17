@@ -1,0 +1,98 @@
+############################################################
+## Nederlands
+############################################################
+
+- id: languageCode
+  translation: nl
+- id: languageName
+  translation: Nederlands
+- id: languageNameShort
+  translation: NL
+
+- id: autoRefreshNotice
+  translation: Pagina wordt vernieuwd in&nbsp;<span id="js-cls-reload-countdown">{{ .secondsLeft }}</span>&nbsp;seconden
+- id: autoRefreshTitle
+  translation: Klik om de pagina nu te vernieuwen
+
+- id: rss
+  translation: Abonneer je via RSS
+
+# Summary status message
+- id: scheduled
+  translation: Gepland
+
+- id: isDown
+  translation: Er gebeurt hier iets ...
+- id: isDisrupted
+  translation: Een beetje problemen ...
+- id: isMonitoring
+  translation: Sommige systemen worden bewaakt ...
+- id: isMaintenance
+  translation: Sommige systemen in onderhoud ...
+- id: isOk
+  translation: Alle systemen operationeel.
+
+# Components list status
+- id: disrupted
+  translation: Onderbroken
+- id: down
+  translation: Down
+- id: ok
+  translation: In bedrijf
+- id: monitoring
+  translation: Bewaakt
+- id: maintenance
+  translation: Onderhoud
+
+# Events
+- id: incidentHistory
+  translation: Afgelopen evenementen
+
+- id: resolved
+  translation: Opgelost
+- id: inUnderAMinute
+  translation: in minder dan een minuut
+
+- id: noEventsTitle
+  translation: Geen gebeurtenis te melden.
+- id: noEventsDesc
+  translation: Deze statuspagina heeft nog geen incident vastgelegd!
+
+- id: prev
+  translation: Meer recente
+- id: next
+  translation: Ouder
+
+##
+## OTHER
+##
+
+- id: goBack
+  translation: Ga terug naar
+- id: backToTop
+  translation: Terug naar boven
+- id: backToList
+  translation: Terug naar evenementenlijst
+
+- id: notFound
+  translation: We konden deze pagina niet vinden.
+- id: notFoundText
+  translation: We hebben deze pagina mogelijk naar een ander adres verplaatst of helemaal verwijderd. Sorry voor de problemen!
+- id: willBe
+  translation: zal zijn
+- id: willBePlural
+  translation: zullen zijn
+- id: was
+  translation: was
+- id: were
+  translation: waren
+- id: is
+  translation: is
+- id: are
+  translation: zijn
+
+# This string will be displayed after each time displayed
+# Set it for instance to " UTC" to indicate UTC times
+# or a specific time zone, ie " America/New_York"
+#- id: timezoneString
+#  translation: ""
