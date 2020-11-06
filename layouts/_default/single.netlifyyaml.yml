@@ -144,12 +144,12 @@ collections:
                   - label: "Name"
                     name: "name"
                     widget: string
-                  - label: "Group"
+{{ with $groups }}                  - label: "Group"
                     name: "group"
                     widget: select
                     multiple: false
                     required: false
-{{ with $groups }}                    options:
+                    options:
 {{ range $groups }}                      - { label: "{{ . }}", value: "{{ . }}" }
 {{ end }}{{ end }}                  - label: "Description"
                     name: "description"
